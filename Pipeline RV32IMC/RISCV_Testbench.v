@@ -79,12 +79,12 @@ module RISCV_Testbench;
         check_reg(5'd8,  32'h00000002,  "div  x8,  x2, x1  -> 2");
         check_reg(5'd9,  32'h0000000A,  "rem  x9,  x3, x2  -> 10");
 
-        $display("\n[REGISTER CHECKS - RV32C]");
-        check_reg(5'd11, 32'h00000008,  "C.LI  x11, 8");
-        check_reg(5'd16, 32'h00000010,  "C.LI  x16, 16");
-        check_reg(5'd17, 32'h00000001,  "C.LI  x17, 1");
-        check_reg(5'd18, 32'h00000010,  "C.MV  x18, x16  -> 16");
-
+       $display("\n[REGISTER CHECKS - RV32C]");
+        check_reg(5'd11, 32'h00000008,  "C.LI   x11, 8");
+        check_reg(5'd16, 32'h00000010,  "C.LI   x16, 16");
+        check_reg(5'd17, 32'h00000001,  "C.LI   x17, 1");
+        check_reg(5'd18, 32'h00000010,  "C.MV   x18, x16  -> 16");
+        check_reg(5'd19, 32'h00000015,  "C.ADD  x19, x16  -> 5+16 = 21");
         check_reg(5'd15, 32'h00000001,  "C.ADDI x15, 1");
 
         $display("\n============================================================");
