@@ -48,13 +48,13 @@ module Inst_memory(
         memory[33] = 32'h00000013; // NOP
         memory[34] = 32'h0221E4B3; // rem  x9,  x3, x2      ? x9  = 10
         memory[35] = 32'h00000013; // NOP (pipeline drain before C instructions)
-        memory[36] = {16'h4841, 16'h45A1}; // x16=16, x11=8
-        memory[37] = {16'h8942, 16'h4885}; // x18=x16, x17=1
+        memory[36] = {16'h4841, 16'h45A1}; // C.LI x11, 8      | C.LI x16, 16   (unchanged)
+        memory[37] = {16'h8942, 16'h4885}; // C.LI x17, 1      | C.MV x18, x16  (unchanged)
         
-        memory[38] = {16'h0001, 16'h0001};
-        
-        memory[39] = {16'h0785, 16'h98C2}; 
-        memory[40] = {16'h0001, 16'h0001};
+        memory[38] = {16'h0001, 16'h4995}; // C.LI x19, 5      | C.NOP
+        memory[39] = {16'h0001, 16'h0001}; // C.NOP x2 (gap before use)
+        memory[40] = {16'h0785, 16'h99C2}; // C.ADD x19, x16   | C.ADDI x15, 1
+        memory[41] = {16'h0001, 16'h0001}; // C.NOP x2 (pipeline drain)
     end
 
     assign Rd      = memory[A[31:2]];
